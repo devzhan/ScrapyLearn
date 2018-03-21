@@ -6,40 +6,32 @@ from proxy.items import ProxyPoolItem
 from bs4 import BeautifulSoup
 
 
-class SixSixIpSpider(scrapy.Spider):
-    name = '66ip'
-    allowed_domains = ['66ip.cn']
+class CoderBusySpider(scrapy.Spider):
+    name = 'coderbusy'
+    allowed_domains = ['coderbusy.com']
 
-    # start_urls = [
-    #     "http://www.66ip.cn/1.html",
-    # ]
-    name = '66ip'
-    allowed_domains = ['66ip.cn']
-
-    def start_requests(self):
-        for i in range(1, 20):
-            yield scrapy.Request("http://www.66ip.cn/{0}.html".format(i),
-                                 callback=self.parse)
+    start_urls = [
+        'https://proxy.coderbusy.com/',
+    ]
 
     def parse(self, response):
         soup = BeautifulSoup(response.text, "html.parser")
-        # print(soup)
-        trs = soup.find_all("table", border="2px")[0].find_all("tr")
-        trs.pop(0)
+        itmes = soup.find_all("tbody")
+        trs = itmes[0].find_all('tr')
         for tr in trs:
             ips = tr.find_all('td')
-            ip = ips[0].text
+            ip = ips[0].text.strip()
             protocols = "HTTP"
             ports = ips[1].text
             address = ips[2].text
             types = ips[3].text
-            time = ips[4].text
+            time = ips[5].find("span").get('title')
             yield ProxyPoolItem({
                 'ip': ip,
                 'protocol': protocols,
                 'port': ports,
                 'types': types,
                 'address': address,
-                'website': 'www.66ip.cn',
+                'website': 'www.proxy.coderbusy.com/',
                 'time': time
             })
