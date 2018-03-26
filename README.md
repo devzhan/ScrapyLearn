@@ -3,3 +3,4 @@
 ### 2.scrapy 爬取http://www.66ip.cn/1.html 的ip代理
 ### 3.爬取https://proxy.coderbusy.com/ 的ip代理
 ### 4.爬取https://proxy.horocn.com/free-proxy.html 的ip代理
+### 5.爬取http://www.data5u.com/ 的ip代理
