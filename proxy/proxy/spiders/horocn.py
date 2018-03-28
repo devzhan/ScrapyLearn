@@ -6,7 +6,7 @@ from proxy.items import ProxyPoolItem
 from bs4 import BeautifulSoup
 
 
-class CoderBusySpider(scrapy.Spider):
+class HorocnSpider(scrapy.Spider):
     name = 'horocn'
     allowed_domains = ['horocn.com']
 
