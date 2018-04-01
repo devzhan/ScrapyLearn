@@ -13,6 +13,7 @@ BOT_NAME = 'proxy'
 
 SPIDER_MODULES = ['proxy.spiders']
 NEWSPIDER_MODULE = 'proxy.spiders'
+DEFAULT_ITEM_CLASS = 'proxy.items.ProxyPoolItem'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
